@@ -157,7 +157,9 @@ public class ProductService {
 
         WeightValue weightValue = new WeightValue(type, weights);
 
-        return Response.ok(weightValue).build();
+        return Response.ok(weightValue)
+                        .cacheControl(buildCacheControl())
+                        .build();
     }
 
     @SuppressWarnings("unchecked")

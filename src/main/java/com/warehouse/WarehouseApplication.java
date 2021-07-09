@@ -2,11 +2,11 @@ package com.warehouse;
 
 import javax.ws.rs.core.UriBuilder;
 
+import com.warehouse.config.SwaggerConfiguration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.warehouse.config.AppBinder;
 import com.warehouse.resource.ProductResource;
-import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
 import org.eclipse.jetty.server.Server;
@@ -29,12 +29,8 @@ public class WarehouseApplication {
                         .register(ApiListingResource.class)
                         .register(SwaggerSerializers.class);
 
-        BeanConfig beanConfig = new BeanConfig();
-        beanConfig.setVersion("1.0.0");
-        beanConfig.setSchemes(new String[]{"http"});
-        beanConfig.setHost("localhost:8081");
-        beanConfig.setResourcePackage("com.warehouse.resource");
-        beanConfig.setScan(true);
+        SwaggerConfiguration swaggerConfiguration = new SwaggerConfiguration();
+        swaggerConfiguration.configureSwagger();
 
         Server server = JettyHttpContainerFactory.createServer(uri, resourceConfig);    }
 }

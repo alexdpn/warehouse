@@ -43,7 +43,7 @@ public class ProductResource {
     )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "The list of products"),
-            @ApiResponse(code = 404, message = "Invalid type or category supplied ")
+            @ApiResponse(code = 404, message = "Invalid type or category supplied")
             })
     public Response getProductsByTypeOrCategory(
             @ApiParam(
@@ -69,7 +69,7 @@ public class ProductResource {
     )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "The product with the specified id"),
-            @ApiResponse(code = 404, message = "Invalid id supplied ")
+            @ApiResponse(code = 404, message = "Invalid id supplied")
     })
     public Response getFleshProductsById(@ApiParam(value = "The id of the product") @PathParam("id") int id) {
         return productService.getProductById(id);
@@ -100,7 +100,7 @@ public class ProductResource {
     @ApiOperation(value = "Delete product by id")
     @ApiResponses(value = {
             @ApiResponse(code = 204, message = "No content meaning successful deletion"),
-            @ApiResponse(code = 404, message = "Invalid id supplied ")
+            @ApiResponse(code = 404, message = "Invalid id supplied")
     })
     public Response deleteProductbyId(@ApiParam(value = "The id of the product") @PathParam("id") int id) {
         return productService.deleteProductById(id);
@@ -109,7 +109,12 @@ public class ProductResource {
     @PUT
     @Path("/{id}")
     @Produces(APPLICATION_JSON)
-    @ApiOperation(value = "Update product by id")
+    @Consumes(APPLICATION_JSON)
+    @ApiOperation(
+            value = "Update product by id",
+            consumes = APPLICATION_JSON,
+            produces = APPLICATION_JSON
+    )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Update was successful"),
             @ApiResponse(code = 201, message = "A new product was added to the backed in case the supplied id was invalid")
@@ -121,7 +126,11 @@ public class ProductResource {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    @ApiOperation(value = "Add a new product to the list")
+    @ApiOperation(
+            value = "Add a new product to the list",
+            consumes = APPLICATION_JSON,
+            produces = APPLICATION_JSON
+    )
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "The product was added successfully"),
             @ApiResponse(code = 500, message = "Internal server error")
