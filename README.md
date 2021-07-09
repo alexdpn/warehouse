@@ -19,7 +19,7 @@ docker run --network host -d restapi:1.0
 ```
 5. Access the endpoints using the port 8081 and the http protocol
 
-#How to start the application without Docker
+# How to start the application without Docker
 1. Clone the repository
 2. Build the project with maven
 3. Open the project in an IDE
