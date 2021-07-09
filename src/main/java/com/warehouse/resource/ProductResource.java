@@ -117,9 +117,11 @@ public class ProductResource {
     )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Update was successful"),
-            @ApiResponse(code = 201, message = "A new product was added to the backed in case the supplied id was invalid")
+            @ApiResponse(code = 201, message = "A new product was added to the backed in case the supplied id was less then the size of the list")
     })
-    public Response updateProductById(@ApiParam(value = "The id of the product") @PathParam("id") int id, Object object) {
+    public Response updateProductById(
+            @ApiParam(value = "The id of the product", required = true) @PathParam("id") int id,
+            @ApiParam(value = "The product", required = true) Object object) {
         return productService.putProduct(id, object);
     }
 

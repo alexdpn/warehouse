@@ -147,13 +147,11 @@ public class ProductService {
 
         logger.info("Caculating total weight for the type " + type);
 
-        double weights = products.stream().filter(product -> product.getType().equals(type)).mapToDouble(product -> {
-            if(categories.get("FLESH").contains(type))
-                return ((Flesh) product).getWeight();
-            else
-                return ((Food) product).getWeight();
-
-        }).sum();
+        double weights = products
+                .stream()
+                .filter(product -> product.getType().equals(type))
+                .mapToDouble(product -> categories.get("FLESH").contains(type) ? ((Flesh) product).getWeight() : ((Food) product).getWeight())
+                .sum();
 
         WeightValue weightValue = new WeightValue(type, weights);
 
