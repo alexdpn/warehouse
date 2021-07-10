@@ -71,7 +71,7 @@ public class ProductResource {
             @ApiResponse(code = 200, message = "The product with the specified id"),
             @ApiResponse(code = 404, message = "Invalid id supplied")
     })
-    public Response getFleshProductsById(@ApiParam(value = "The id of the product") @PathParam("id") int id) {
+    public Response getProductsById(@ApiParam(value = "The id of the product") @PathParam("id") int id) {
         return productService.getProductById(id);
     }
 
@@ -117,7 +117,7 @@ public class ProductResource {
     )
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Update was successful"),
-            @ApiResponse(code = 201, message = "A new product was added to the backend in case the supplied id was less then the size of the list")
+            @ApiResponse(code = 201, message = "A new product was added to the backend in case the supplied id was equal or greater then the size of the list")
     })
     public Response updateProductById(
             @ApiParam(value = "The id of the product", required = true) @PathParam("id") int id,
