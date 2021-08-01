@@ -106,13 +106,13 @@ public class ProductResourceTest {
 
     @Test
     public void testWeightCalculator() {
-        WeightValue porkTotalWeight = (WeightValue) productService.calculateWeights(Type.LAMB).getEntity();
+        WeightValue lambTotalWeight = (WeightValue) productService.calculateWeights(Type.LAMB).getEntity();
 
         WeightValue weightValueFromServer = target.path("products").path("weights").queryParam("type", "LAMB")
                 .request(MediaType.APPLICATION_JSON)
                 .get(WeightValue.class);
 
-        assertEquals(porkTotalWeight, weightValueFromServer);
+        assertEquals(lambTotalWeight, weightValueFromServer);
     }
 
     @AfterClass
