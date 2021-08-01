@@ -5,10 +5,6 @@ The application uses the following technologies: Java 8, Jersey, Junit, Swagger,
 
 # How to start the application with Docker
 1. Clone the repository
-2. Build the project with maven
-```
-mvn clean install
-```
 3. Build the docker image
 ```
 docker build --tag warehouse:1.0 .
